@@ -39,18 +39,6 @@ class SettingsService extends ChangeNotifier {
     await sp.setStringList('lich_su_tim', lichSuTim);
   }
 
-  Future<void> themLichSuTim(String tuKhoa) async {
-    final tu = tuKhoa.trim();
-    if (tu.isEmpty) return;
-    lichSuTim.remove(tu);
-    lichSuTim.insert(0, tu);
-    if (lichSuTim.length > 10) {
-      lichSuTim = lichSuTim.sublist(0, 10);
-    }
-    notifyListeners();
-    await _luuLichSuTim();
-  }
-
   Future<void> xoaLichSuTim(String tuKhoa) async {
     lichSuTim.remove(tuKhoa);
     notifyListeners();
