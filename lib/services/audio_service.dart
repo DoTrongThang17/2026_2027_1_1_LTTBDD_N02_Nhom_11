@@ -110,3 +110,34 @@ Future<void> baiTruoc() async {
 }
 
 Future<void> tuaDen(Duration viTri) => mayPhat.seek(viTri);
+
+double amLuong = 1;
+double tocDo = 1;
+Timer? _henGio;
+DateTime? gioTat;
+
+void henGioTat(int phut) {
+  _henGio?.cancel();
+  gioTat = DateTime.now().add(Duration(minutes: phut));
+  _henGio = Timer(Duration(minutes: phut), () {
+    mayPhat.pause();
+    gioTat = null;
+    _henGio = null;
+  });
+}
+
+void huyHenGio() {
+  _henGio?.cancel();
+  _henGio = null;
+  gioTat = null;
+}
+
+Future<void> doiAmLuong(double giaTri) async {
+  amLuong = giaTri;
+  await mayPhat.setVolume(giaTri);
+}
+
+Future<void> doiTocDo(double giaTri) async {
+  tocDo = giaTri;
+  await mayPhat.setSpeed(giaTri);
+}
