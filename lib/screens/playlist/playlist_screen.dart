@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/playlist.dart';
 import '../../services/data_service.dart';
+import '../../services/setting_service.dart';
 import '../../theme/app_theme.dart';
 import 'playlist_detail_screen.dart';
 
@@ -36,16 +37,22 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(playlist == null ? 'Playlist mới' : 'Đổi tên'),
+        title: Text(
+          playlist == null
+              ? tr('Playlist mới', 'New playlist')
+              : tr('Đổi tên', 'Rename'),
+        ),
         content: TextField(
           controller: controller,
           autofocus: true,
-          decoration: const InputDecoration(hintText: 'Tên playlist'),
+          decoration: InputDecoration(
+            hintText: tr('Tên playlist', 'Playlist name'),
+          ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Huỷ'),
+            child: Text(tr('Huỷ', 'Cancel')),
           ),
           TextButton(
             onPressed: () {
@@ -56,7 +63,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
               }
               Navigator.pop(context);
             },
-            child: const Text('Lưu'),
+            child: Text(tr('Lưu', 'Save')),
           ),
         ],
       ),
@@ -67,19 +74,19 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Xoá playlist'),
-        content: Text('Xoá "${p.name}"?'),
+        title: Text(tr('Xoá playlist', 'Delete playlist')),
+        content: Text(tr('Xoá "${p.name}"?', 'Delete "${p.name}"?')),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Huỷ'),
+            child: Text(tr('Huỷ', 'Cancel')),
           ),
           TextButton(
             onPressed: () {
               duLieu.deletePlaylist(p);
               Navigator.pop(context);
             },
-            child: const Text('Xoá'),
+            child: Text(tr('Xoá', 'Delete')),
           ),
         ],
       ),
@@ -98,7 +105,11 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         child: const Icon(Icons.add),
       ),
       body: ds.isEmpty
-          ? const Center(child: Text('Chưa có playlist nào'))
+          ? Center(
+              child: Text(
+                tr('Chưa có playlist nào', 'No playlists yet'),
+              ),
+            )
           : ListView(
               children: [
                 for (final p in ds)
@@ -120,7 +131,12 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        '${p.totalSongs} bài hát • ${p.totalDuration.inMinutes} phút',
+                        tr(
+                          '${p.totalSongs} bài hát • '
+                              '${p.totalDuration.inMinutes} phút',
+                          '${p.totalSongs} songs • '
+                              '${p.totalDuration.inMinutes} min',
+                        ),
                       ),
                       onTap: () => Navigator.push(
                         context,
@@ -133,14 +149,14 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                         onSelected: (chon) => chon == 'doiten'
                             ? _hopThoaiTen(playlist: p)
                             : _xoa(p),
-                        itemBuilder: (_) => const [
+                        itemBuilder: (_) => [
                           PopupMenuItem(
                             value: 'doiten',
-                            child: Text('Đổi tên'),
+                            child: Text(tr('Đổi tên', 'Rename')),
                           ),
                           PopupMenuItem(
                             value: 'xoa',
-                            child: Text('Xoá'),
+                            child: Text(tr('Xoá', 'Delete')),
                           ),
                         ],
                       ),
