@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../models/artist.dart';
+<<<<<<< HEAD
 import '../models/comment.dart';
+=======
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
 import '../models/playlist.dart';
 import '../models/song.dart';
 
@@ -9,9 +12,13 @@ class DataService extends ChangeNotifier {
   final List<Artist> artists = [];
   final List<Song> songs = [];
   final List<Playlist> playlists = [];
+<<<<<<< HEAD
   final Map<String, List<Comment>> _binhLuan = {};
   final Set<String> _daThich = {};
   final Set<String> _dangTheoDoi = {};
+=======
+  final Set<String> _daThich = {};
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
 
   final Artist toi = Artist(
     id: 'me',
@@ -71,6 +78,7 @@ class DataService extends ChangeNotifier {
       anh: 'imgs/hoaminzy.jpg',
       followers: 5100000,
     );
+<<<<<<< HEAD
     final lbb = Artist(
       id: 'lbb',
       name: 'Lê Bảo Bình',
@@ -79,6 +87,8 @@ class DataService extends ChangeNotifier {
       anh: 'imgs/lebaobinh.jpg',
       followers: 2100000,
     );
+=======
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
     final den = Artist(
       id: 'den',
       name: 'Đen Vâu',
@@ -87,6 +97,7 @@ class DataService extends ChangeNotifier {
       anh: 'imgs/denvau.jpg',
       followers: 4500000,
     );
+<<<<<<< HEAD
     final qap = Artist(
       id: 'quanap',
       name: 'Quân A.P',
@@ -113,6 +124,11 @@ class DataService extends ChangeNotifier {
     );
     artists.addAll([mtp, hm, lbb, den, qap, dg, hl]);
 
+=======
+    artists.addAll([mtp, hm, den]);
+
+    // Khởi tạo danh sách bài hát mẫu đại diện
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
     themBai(
       mtp,
       'Lạc Trôi',
@@ -130,6 +146,7 @@ class DataService extends ChangeNotifier {
       giay: 278,
     );
     themBai(
+<<<<<<< HEAD
       mtp,
       'Hãy Trao Cho Anh',
       'mtp_hay_trao_cho_anh',
@@ -155,6 +172,8 @@ class DataService extends ChangeNotifier {
     );
 
     themBai(
+=======
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
       hm,
       'Bắc Bling',
       'hm_bac_bling',
@@ -163,6 +182,7 @@ class DataService extends ChangeNotifier {
       giay: 259,
     );
     themBai(
+<<<<<<< HEAD
       hm,
       'Không Thể Cùng Nhau Suốt Kiếp',
       'hm_khong_the_cung_nhau_suot_kiep',
@@ -207,6 +227,8 @@ class DataService extends ChangeNotifier {
     );
 
     themBai(
+=======
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
       den,
       'Mang Tiền Về Cho Mẹ',
       'den_mang_tien_ve_cho_me',
@@ -222,6 +244,7 @@ class DataService extends ChangeNotifier {
       1700000,
       giay: 273,
     );
+<<<<<<< HEAD
     themBai(
       den,
       'Trốn Tìm',
@@ -354,15 +377,28 @@ class DataService extends ChangeNotifier {
 
     _daThich.addAll(['mtp_lac_troi', 'den_bai_nay_chill_phet']);
     _dangTheoDoi.addAll(['mtp', 'den', 'hoaminzy']);
+=======
+
+    // Khởi tạo dữ liệu yêu thích và playlist ban đầu
+    _daThich.addAll(['mtp_lac_troi', 'den_bai_nay_chill_phet']);
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
     playlists.add(
       Playlist(
         id: 'p1',
         name: 'Nghe cuối tuần',
+<<<<<<< HEAD
         songs: [songs[0], songs[5], songs[13]],
+=======
+        songs: [songs[0], songs[2], songs[4]],
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
       ),
     );
   }
 
+<<<<<<< HEAD
+=======
+  // --- QUẢN LÝ DANH SÁCH BÀI HÁT & NGHỆ SĨ ---
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
   List<Song> get baiCongKhai => songs
       .where((s) => !s.riengTu || s.artist.id == toi.id)
       .toList();
@@ -385,6 +421,7 @@ class DataService extends ChangeNotifier {
   List<Song> baiCuaNgheSi(Artist a) =>
       baiMoi.where((s) => s.artist.id == a.id).toList();
 
+<<<<<<< HEAD
   List<Song> get baiCuaToi => baiCuaNgheSi(toi);
 
   List<Song> timKiem(String tuKhoa) {
@@ -405,6 +442,9 @@ class DataService extends ChangeNotifier {
         .toList();
   }
 
+=======
+  // --- QUẢN LÝ YÊU THÍCH ---
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
   bool laYeuThich(Song bai) => _daThich.contains(bai.id);
 
   void doiYeuThich(Song bai) {
@@ -421,6 +461,7 @@ class DataService extends ChangeNotifier {
   List<Song> get baiDaThich =>
       songs.where((s) => _daThich.contains(s.id)).toList();
 
+<<<<<<< HEAD
   bool dangTheoDoi(Artist a) => _dangTheoDoi.contains(a.id);
 
   void doiTheoDoi(Artist a) {
@@ -497,6 +538,9 @@ class DataService extends ChangeNotifier {
     notifyListeners();
   }
 
+=======
+  // --- QUẢN LÝ PLAYLIST ---
+>>>>>>> 8e60ab81df23e1a72d0000b665f64f89d826956a
   bool createPlaylist(String name) {
     if (name.trim().isEmpty) return false;
     playlists.add(
