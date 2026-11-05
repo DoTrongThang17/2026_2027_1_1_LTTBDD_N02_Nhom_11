@@ -5,6 +5,24 @@ import '../../theme/app_theme.dart';
 class TeamScreen extends StatelessWidget {
   const TeamScreen({super.key});
 
+  final List> thanhVien = const [
+    {
+      'ten': 'Đỗ Trọng Thắng',
+      'msv': '24100316',
+      'vaiTro': 'Nhóm trưởng',
+    },
+    {
+      'ten': 'Nguyễn Anh Tuấn',
+      'msv': '24100400',
+      'vaiTro': 'Thành viên',
+    },
+    {
+      'ten': 'Nguyễn Thế Tuấn',
+      'msv': '24100315',
+      'vaiTro': 'Thành viên',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +90,29 @@ class TeamScreen extends StatelessWidget {
               ],
             ),
           ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 12),
+            child: Text(
+              'Thành viên',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          for (final tv in thanhVien)
+            Card(
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: mauChinh,
+                  foregroundColor: Colors.white,
+                  child: Text(tv['ten']![0]),
+                ),
+                title: Text(tv['ten']!),
+                subtitle: Text('MSV: ${tv['msv']}'),
+                trailing: Text(tv['vaiTro']!),
+              ),
+            ),
         ],
       ),
     );
