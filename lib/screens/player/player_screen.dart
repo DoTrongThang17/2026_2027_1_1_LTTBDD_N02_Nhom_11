@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../models/comment.dart';
 import '../../services/audio_service.dart';
 import '../../services/data_service.dart';
-import '../../services/setting_service.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/am_luong_sheet.dart';
 import '../../widgets/anh_bia.dart';
@@ -69,11 +68,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
         child: ListView(
           shrinkWrap: true,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
+            const Padding(
+              padding: EdgeInsets.all(16),
               child: Text(
-                tr('Danh sách phát', 'Queue'),
-                style: const TextStyle(
+                'Danh sách phát',
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -100,11 +99,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     if (bai == null) {
       return Scaffold(
         appBar: AppBar(),
-        body: Center(
-          child: Text(
-            tr('Chưa chọn bài hát nào', 'No song selected'),
-          ),
-        ),
+        body: const Center(child: Text('Chưa chọn bài hát nào')),
       );
     }
 
@@ -115,7 +110,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(tr('Đang phát', 'Now playing')),
+        title: const Text('Đang phát'),
         leading: IconButton(
           icon: const Icon(Icons.keyboard_arrow_down),
           onPressed: () => Navigator.pop(context),
@@ -157,11 +152,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
           if (loiPhat != null)
             Text(
-              tr(
-                    '⚠ Chưa có file nhạc. Hãy chép file vào ',
-                    '⚠ Audio file missing. Copy it to ',
-                  ) +
-                  bai.audio,
+              '⚠ Chưa có file nhạc. Hãy chép file vào ${bai.audio}',
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.red, fontSize: 12),
             ),
@@ -231,7 +222,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                tooltip: tr('Thích', 'Like'),
+                tooltip: 'Thích',
                 icon: Icon(
                   daThich ? Icons.favorite : Icons.favorite_border,
                   color: daThich ? mauChinh : null,
@@ -239,7 +230,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 onPressed: () => duLieu.doiYeuThich(bai),
               ),
               IconButton(
-                tooltip: tr('Bình luận', 'Comments'),
+                tooltip: 'Bình luận',
                 icon: const Icon(Icons.chat_bubble_outline),
                 onPressed: () => Navigator.push(
                   context,
@@ -249,17 +240,17 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 ),
               ),
               IconButton(
-                tooltip: tr('Thêm vào playlist', 'Add to playlist'),
+                tooltip: 'Thêm vào playlist',
                 icon: const Icon(Icons.playlist_add),
                 onPressed: () => moThemVaoPlaylist(context, bai),
               ),
               IconButton(
-                tooltip: tr('Danh sách phát', 'Queue'),
+                tooltip: 'Danh sách phát',
                 icon: const Icon(Icons.queue_music),
                 onPressed: moHangDoi,
               ),
               IconButton(
-                tooltip: tr('Hẹn giờ tắt', 'Sleep timer'),
+                tooltip: 'Hẹn giờ tắt',
                 icon: Icon(
                   gioTat == null
                       ? Icons.bedtime_outlined
@@ -269,7 +260,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 onPressed: () => moHenGio(context, _capNhat),
               ),
               IconButton(
-                tooltip: tr('Âm lượng & tốc độ', 'Volume & speed'),
+                tooltip: 'Âm lượng & tốc độ',
                 icon: const Icon(Icons.tune),
                 onPressed: () => moAmLuong(context),
               ),
@@ -277,16 +268,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
           ),
           if (gioTat != null)
             Text(
-              tr(
-                '⏰ Nhạc sẽ tắt lúc ${gioPhut(gioTat!)}',
-                '⏰ Music stops at ${gioPhut(gioTat!)}',
-              ),
+              '⏰ Nhạc sẽ tắt lúc ${gioPhut(gioTat!)}',
               textAlign: TextAlign.center,
               style: const TextStyle(color: mauChinh),
             ),
           if (tocDo != 1)
             Text(
-              tr('Tốc độ: ${tocDo}x', 'Speed: ${tocDo}x'),
+              'Tốc độ: ${tocDo}x',
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.grey),
             ),
