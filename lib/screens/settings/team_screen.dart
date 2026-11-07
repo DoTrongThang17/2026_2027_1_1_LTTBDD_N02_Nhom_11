@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../services/setting_service.dart';
 import '../../theme/app_theme.dart';
 
 class TeamScreen extends StatelessWidget {
   const TeamScreen({super.key});
 
-  final List> thanhVien = const [
+  final List<Map<String, String>> thanhVien = const [
     {
       'ten': 'Đỗ Trọng Thắng',
       'msv': '24100316',
@@ -26,9 +27,7 @@ class TeamScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Thông tin nhóm'),
-      ),
+      appBar: AppBar(title: Text(tr('Thông tin nhóm', 'Team info'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -40,14 +39,14 @@ class TeamScreen extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: const Column(
+            child: Column(
               children: [
-                Icon(
+                const Icon(
                   Icons.graphic_eq,
                   color: Colors.white,
                   size: 48,
                 ),
-                Text(
+                const Text(
                   'Nhóm 11',
                   style: TextStyle(
                     color: Colors.white,
@@ -56,45 +55,53 @@ class TeamScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Ứng dụng nghe nhạc lấy cảm hứng từ SoundCloud',
-                  style: TextStyle(color: Colors.white),
+                  tr(
+                    'Ứng dụng nghe nhạc lấy cảm hứng từ SoundCloud',
+                    'A music app inspired by SoundCloud',
+                  ),
+                  style: const TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
               ],
             ),
           ),
           const SizedBox(height: 16),
-          const Card(
+          Card(
             child: Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.school),
-                  title: Text('Trường'),
-                  subtitle: Text('Đại học Phenikaa'),
+                  leading: const Icon(Icons.school),
+                  title: Text(tr('Trường', 'University')),
+                  subtitle: const Text('Đại học Phenikaa'),
                 ),
                 ListTile(
-                  leading: Icon(Icons.book),
-                  title: Text('Môn học'),
-                  subtitle: Text('Lập trình cho thiết bị di động'),
+                  leading: const Icon(Icons.book),
+                  title: Text(tr('Môn học', 'Course')),
+                  subtitle: Text(
+                    tr(
+                      'Lập trình cho thiết bị di động',
+                      'Mobile Programming',
+                    ),
+                  ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.class_),
-                  title: Text('Lớp - Nhóm'),
-                  subtitle: Text('N02 - Nhóm 11'),
+                  leading: const Icon(Icons.class_),
+                  title: Text(tr('Lớp - Nhóm', 'Class - Group')),
+                  subtitle: const Text('N02 - Nhóm 11'),
                 ),
                 ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Giảng viên'),
-                  subtitle: Text('Nguyễn Xuân Quế'),
+                  leading: const Icon(Icons.person),
+                  title: Text(tr('Giảng viên', 'Lecturer')),
+                  subtitle: const Text('Nguyễn Xuân Quế'),
                 ),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 12),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
-              'Thành viên',
-              style: TextStyle(
+              tr('Thành viên', 'Members'),
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
