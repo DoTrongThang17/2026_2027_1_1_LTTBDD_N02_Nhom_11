@@ -6,6 +6,7 @@ import '../../models/artist.dart';
 import '../../models/song.dart';
 import '../../services/audio_service.dart';
 import '../../services/data_service.dart';
+import '../../services/setting_service.dart';
 import '../../widgets/anh_bia.dart';
 import '../../widgets/dinh_dang.dart';
 import '../../widgets/menu_bai_hat.dart';
@@ -112,7 +113,12 @@ class _GenreScreenState extends State<GenreScreen> {
                   ),
                 ),
                 Text(
-                  '${ds.length} bài hát • ${soGon(tongLuotNghe)} lượt nghe',
+                  tr(
+                    '${ds.length} bài hát • '
+                        '${soGon(tongLuotNghe)} lượt nghe',
+                    '${ds.length} tracks • '
+                        '${soGon(tongLuotNghe)} plays',
+                  ),
                   style: const TextStyle(color: Colors.white70),
                 ),
               ],
@@ -198,26 +204,26 @@ class _GenreScreenState extends State<GenreScreen> {
         children: [
           dauTrang(ds, mau),
           if (ds.isNotEmpty) ...[
-            tieuDe('Nghệ sĩ'),
+            tieuDe(tr('Nghệ sĩ', 'Artists')),
             hangNgheSi(ngheSiTrong(ds)),
           ],
-          tieuDe('Bài hát'),
+          tieuDe(tr('Bài hát', 'Tracks')),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Wrap(
               spacing: 8,
               children: [
-                nutSapXep('phobien', 'Phổ biến', mau),
-                nutSapXep('moinhat', 'Mới nhất', mau),
+                nutSapXep('phobien', tr('Phổ biến', 'Popular'), mau),
+                nutSapXep('moinhat', tr('Mới nhất', 'Newest'), mau),
                 nutSapXep('az', 'A - Z', mau),
               ],
             ),
           ),
           if (ds.isEmpty)
-            const Padding(
+            Padding(
               padding: const EdgeInsets.all(32),
               child: Text(
-                'Chưa có bài hát nào',
+                tr('Chưa có bài hát nào', 'No tracks yet'),
                 textAlign: TextAlign.center,
               ),
             ),
