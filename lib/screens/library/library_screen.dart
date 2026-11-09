@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../services/data_service.dart';
+import '../../services/setting_service.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/anh_bia.dart';
 import '../artist/artist_screen.dart';
@@ -36,7 +37,7 @@ class LibraryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final toi = duLieu.toi;
     return Scaffold(
-      appBar: AppBar(title: const Text('Thư viện')),
+      appBar: AppBar(title: Text(tr('Thư viện', 'Library'))),
       body: ListView(
         children: [
           Card(
@@ -51,7 +52,9 @@ class LibraryScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: const Text('Xem trang cá nhân'),
+              subtitle: Text(
+                tr('Xem trang cá nhân', 'View your profile'),
+              ),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => Navigator.push(
                 context,
@@ -64,7 +67,7 @@ class LibraryScreen extends StatelessWidget {
           dongMenu(
             context,
             Icons.favorite,
-            'Bài hát đã thích',
+            tr('Bài hát đã thích', 'Liked tracks'),
             duLieu.baiDaThich.length,
             const SongListScreen(loai: 'thich'),
           ),
@@ -78,21 +81,21 @@ class LibraryScreen extends StatelessWidget {
           dongMenu(
             context,
             Icons.people,
-            'Đang theo dõi',
+            tr('Đang theo dõi', 'Following'),
             duLieu.ngheSiDangTheoDoi.length,
             const FollowingScreen(),
           ),
           dongMenu(
             context,
             Icons.mic,
-            'Bài hát của tôi',
+            tr('Bài hát của tôi', 'My tracks'),
             duLieu.baiCuaToi.length,
             const SongListScreen(loai: 'cuatoi'),
           ),
           dongMenu(
             context,
             Icons.cloud_upload,
-            'Tải lên bài hát',
+            tr('Tải lên bài hát', 'Upload a track'),
             null,
             const UploadScreen(),
           ),
@@ -129,7 +132,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Nghệ sĩ')),
+      appBar: AppBar(title: Text(tr('Nghệ sĩ', 'Artists'))),
       body: ListView(
         children: [
           for (final ns in duLieu.artists)
@@ -146,7 +149,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
               trailing: duLieu.dangTheoDoi(ns)
                   ? OutlinedButton(
                       onPressed: () => duLieu.doiTheoDoi(ns),
-                      child: const Text('Đang theo dõi'),
+                      child: Text(tr('Đang theo dõi', 'Following')),
                     )
                   : ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -154,7 +157,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () => duLieu.doiTheoDoi(ns),
-                      child: const Text('Theo dõi'),
+                      child: Text(tr('Theo dõi', 'Follow')),
                     ),
             ),
         ],
