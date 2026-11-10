@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../models/song.dart';
 import '../../services/audio_service.dart';
 import '../../services/data_service.dart';
+import '../../services/setting_service.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/anh_bia.dart';
 import '../../widgets/dinh_dang.dart';
@@ -130,7 +131,9 @@ class _ChartsScreenState extends State<ChartsScreen> {
   Widget tabXepHang(String loai) {
     final ds = xepHang(loai);
     if (ds.isEmpty) {
-      return const Center(child: Text('Chưa có bài hát nào'));
+      return Center(
+        child: Text(tr('Chưa có bài hát nào', 'No tracks yet')),
+      );
     }
     return ListView(
       children: [
@@ -160,14 +163,14 @@ class _ChartsScreenState extends State<ChartsScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Bảng xếp hạng'),
-          bottom: const TabBar(
+          title: Text(tr('Bảng xếp hạng', 'Charts')),
+          bottom: TabBar(
             labelColor: mauChinh,
             indicatorColor: mauChinh,
             tabs: [
-              Tab(text: 'Nghe nhiều'),
-              Tab(text: 'Yêu thích'),
-              Tab(text: 'Bình luận'),
+              Tab(text: tr('Nghe nhiều', 'Most played')),
+              Tab(text: tr('Yêu thích', 'Most liked')),
+              Tab(text: tr('Bình luận', 'Most discussed')),
             ],
           ),
         ),
