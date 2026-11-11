@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../services/audio_service.dart';
 import '../../services/data_service.dart';
+import '../../services/setting_service.dart';
 import '../../widgets/anh_bia.dart';
 import '../../widgets/menu_bai_hat.dart';
 import '../../widgets/song_tile.dart';
@@ -22,6 +23,58 @@ class _SearchScreenState extends State<SearchScreen> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void timLai(String tu) {
+    _controller.text = tu;
+    setState(() => tuKhoa = tu);
+    caiDat.themLichSuTim(tu);
+  }
+
+  Widget tieuDe(String chu, {List<Widget> nut = const []}) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 12, 8, 4),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              chu,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          ...nut,
+        ],
+      ),
+    );
+  }
+
+  Widget manHinhDau() {
+    final lichSu = caiDat.lichSuTim;
+    return ListView(
+      children: [
+        if (lichSu.isNotEmpty) ...[
+          tieuDe(
+            'Tìm kiếm gần đây',
+            nut: [
+              TextButton(
+                onPressed: () => caiDat.xoaHetLichSuTim(),
+                child: const Text('Xoá tất cả'),
+              ),
+            ],
+          ),
+          for (final tu in lichSu)
+            ListTile(
+              leading: const Icon(Icons.history),
+              title: Text(tu),
+              onTap: () => timLai(tu),
+              trailing: IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () => caiDat.xoaLichSuTim(tu),
+              ),
+            ),
+        ],
+      ],
+    );
   }
 
   Widget ketQua() {
@@ -48,6 +101,7 @@ class _SearchScreenState extends State<SearchScreen> {
             title: Text(ns.name),
             subtitle: Text(ns.city),
             onTap: () {
+              caiDat.themLichSuTim(tuKhoa);
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -68,7 +122,10 @@ class _SearchScreenState extends State<SearchScreen> {
           SongTile(
             bai: bai,
             dangChon: baiDangPhat?.id == bai.id,
-            onTap: () => phatBai(bai, dsBai),
+            onTap: () {
+              caiDat.themLichSuTim(tuKhoa);
+              phatBai(bai, dsBai);
+            },
             trailing: MenuBaiHat(bai: bai),
           ),
       ],
@@ -89,6 +146,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: TextField(
               controller: _controller,
               onChanged: (giaTri) => setState(() => tuKhoa = giaTri),
+              onSubmitted: (giaTri) => caiDat.themLichSuTim(giaTri),
               decoration: InputDecoration(
                 hintText: 'Tìm bài hát, nghệ sĩ, thể loại...',
                 prefixIcon: const Icon(Icons.search),
@@ -108,9 +166,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           Expanded(
-            child: tuKhoa.trim().isEmpty
-                ? const SizedBox.shrink()
-                : ketQua(),
+            child: tuKhoa.trim().isEmpty ? manHinhDau() : ketQua(),
           ),
         ],
       ),
