@@ -54,11 +54,11 @@ class _SearchScreenState extends State<SearchScreen> {
       children: [
         if (lichSu.isNotEmpty) ...[
           tieuDe(
-            'Tìm kiếm gần đây',
+            tr('Tìm kiếm gần đây', 'Recent searches'),
             nut: [
               TextButton(
                 onPressed: () => caiDat.xoaHetLichSuTim(),
-                child: const Text('Xoá tất cả'),
+                child: Text(tr('Xoá tất cả', 'Clear all')),
               ),
             ],
           ),
@@ -82,17 +82,19 @@ class _SearchScreenState extends State<SearchScreen> {
     final dsNgheSi = duLieu.timNgheSi(tuKhoa);
 
     if (dsBai.isEmpty && dsNgheSi.isEmpty) {
-      return const Center(child: Text('Không tìm thấy kết quả'));
+      return Center(
+        child: Text(tr('Không tìm thấy kết quả', 'No results found')),
+      );
     }
 
     return ListView(
       children: [
         if (dsNgheSi.isNotEmpty)
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
             child: Text(
-              'Nghệ sĩ',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              tr('Nghệ sĩ', 'Artists'),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
         for (final ns in dsNgheSi)
@@ -111,11 +113,11 @@ class _SearchScreenState extends State<SearchScreen> {
             },
           ),
         if (dsBai.isNotEmpty)
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
             child: Text(
-              'Bài hát',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              tr('Bài hát', 'Tracks'),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
         for (final bai in dsBai)
@@ -135,7 +137,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Tìm kiếm')),
+      appBar: AppBar(title: Text(tr('Tìm kiếm', 'Search'))),
       body: Column(
         children: [
           Padding(
@@ -148,7 +150,10 @@ class _SearchScreenState extends State<SearchScreen> {
               onChanged: (giaTri) => setState(() => tuKhoa = giaTri),
               onSubmitted: (giaTri) => caiDat.themLichSuTim(giaTri),
               decoration: InputDecoration(
-                hintText: 'Tìm bài hát, nghệ sĩ, thể loại...',
+                hintText: tr(
+                  'Tìm bài hát, nghệ sĩ, thể loại...',
+                  'Search tracks, artists, genres...',
+                ),
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: tuKhoa.isEmpty
                     ? null
