@@ -48,7 +48,7 @@ class _UploadScreenState extends State<UploadScreen> {
     duLieu.taiLenBai(
       tenBai: _tenController.text.trim(),
       theLoai: theLoai,
-      audio: 'audio/$fileDaChon',
+      audio: 'assets/audio/$fileDaChon',
       thoiLuong: Duration(seconds: fileMau[fileDaChon]!),
       mau: mauBia,
       riengTu: riengTu,

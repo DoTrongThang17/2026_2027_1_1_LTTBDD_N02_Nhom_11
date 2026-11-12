@@ -45,7 +45,7 @@ class DataService extends ChangeNotifier {
           title: ten,
           artist: ns,
           genre: theLoai,
-          audio: 'audio/$file.mp3',
+          audio: 'assets/audio/$file.mp3',
           duration: Duration(seconds: giay),
           color: ns.color,
           ngayDang: now.subtract(Duration(days: dem * 2)),
@@ -60,7 +60,7 @@ class DataService extends ChangeNotifier {
       name: 'Sơn Tùng M-TP',
       city: 'Thái Bình',
       color: const Color(0xFFD32F2F),
-      anh: 'imgs/sontungmtp.jpg',
+      anh: 'assets/imgs/sontungmtp.jpg',
       followers: 8200000,
     );
     final hm = Artist(
@@ -68,7 +68,7 @@ class DataService extends ChangeNotifier {
       name: 'Hòa Minzy',
       city: 'Bắc Ninh',
       color: const Color(0xFFF57C00),
-      anh: 'imgs/hoaminzy.jpg',
+      anh: 'assets/imgs/hoaminzy.jpg',
       followers: 5100000,
     );
     final lbb = Artist(
@@ -76,7 +76,7 @@ class DataService extends ChangeNotifier {
       name: 'Lê Bảo Bình',
       city: 'TP. HCM',
       color: const Color(0xFF1976D2),
-      anh: 'imgs/lebaobinh.jpg',
+      anh: 'assets/imgs/lebaobinh.jpg',
       followers: 2100000,
     );
     final den = Artist(
@@ -84,7 +84,7 @@ class DataService extends ChangeNotifier {
       name: 'Đen Vâu',
       city: 'Quảng Ninh',
       color: const Color(0xFF424242),
-      anh: 'imgs/denvau.jpg',
+      anh: 'assets/imgs/denvau.jpg',
       followers: 4500000,
     );
     final qap = Artist(
@@ -92,7 +92,7 @@ class DataService extends ChangeNotifier {
       name: 'Quân A.P',
       city: 'Hà Nội',
       color: const Color(0xFF7B1FA2),
-      anh: 'imgs/quanap.jpg',
+      anh: 'assets/imgs/quanap.jpg',
       followers: 1300000,
     );
     final dg = Artist(
@@ -100,7 +100,7 @@ class DataService extends ChangeNotifier {
       name: 'Đạt G',
       city: 'TP. HCM',
       color: const Color(0xFF5D4037),
-      anh: 'imgs/datg.jpg',
+      anh: 'assets/imgs/datg.jpg',
       followers: 2400000,
     );
     final hl = Artist(
@@ -108,7 +108,7 @@ class DataService extends ChangeNotifier {
       name: 'Nguyễn Hương Ly',
       city: 'Hà Tĩnh',
       color: const Color(0xFFEC407A),
-      anh: 'imgs/nguyenhuongly.jpg',
+      anh: 'assets/imgs/nguyenhuongly.jpg',
       followers: 1800000,
     );
     artists.addAll([mtp, hm, lbb, den, qap, dg, hl]);
