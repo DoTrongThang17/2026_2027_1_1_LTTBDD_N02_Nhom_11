@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../screens/models/song.dart';
-import '../screens/screens/artist/artist_screen.dart';
-import '../screens/screens/player/comment_screen.dart';
-import '../screens/services/data_service.dart';
-import '../screens/services/setting_service.dart';
-import '../screens/widgets/them_playlist.dart';
+import '../models/song.dart';
+import '../screens/artist/artist_screen.dart';
+import '../screens/player/comment_screen.dart';
+import '../services/data_service.dart';
+import '../services/setting_service.dart';
+import 'them_playlist.dart';
 
 class MenuBaiHat extends StatelessWidget {
   final Song bai;
