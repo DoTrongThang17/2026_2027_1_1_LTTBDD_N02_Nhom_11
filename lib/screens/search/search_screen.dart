@@ -7,6 +7,7 @@ import '../../widgets/anh_bia.dart';
 import '../../widgets/menu_bai_hat.dart';
 import '../../widgets/song_tile.dart';
 import '../artist/artist_screen.dart';
+import '../genre/genre_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -73,6 +74,47 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
         ],
+        tieuDe(tr('Thể loại', 'Genres')),
+        oTheLoai(),
+      ],
+    );
+  }
+
+  Widget oTheLoai() {
+    return GridView.count(
+      crossAxisCount: 2,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(16),
+      mainAxisSpacing: 12,
+      crossAxisSpacing: 12,
+      childAspectRatio: 2,
+      children: [
+        for (var i = 0; i < DataService.theLoai.length; i++)
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    GenreScreen(theLoai: DataService.theLoai[i]),
+              ),
+            ),
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: mauCuaTheLoai(DataService.theLoai[i]),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                DataService.theLoai[i],
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
       ],
     );
   }
